@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bvc58fndae52p"]
+
+[ext_resource type="Script" path="res://Scenes/pipe.gd" id="1_2xr1n"]
+[ext_resource type="Texture2D" uid="uid://lfeygc8uejkd" path="res://Assets/ASSETCHISON5.png" id="2_s3ojj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeiu7"]
+size = Vector2(76, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydmtf"]
+size = Vector2(64.5, 524)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wacjf"]
+size = Vector2(73.5, 32.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ifcx"]
+size = Vector2(66, 523)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uq28"]
+size = Vector2(20, 201.5)
+
+[node name="Pipe" type="Area2D" groups=["pipes"]]
+script = ExtResource("1_2xr1n")
+
+[node name="Lower" type="Sprite2D" parent="."]
+rotation = 3.14159
+texture = ExtResource("2_s3ojj")
+offset = Vector2(0, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -117.25)
+shape = SubResource("RectangleShape2D_eeiu7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2.25, -400)
+shape = SubResource("RectangleShape2D_ydmtf")
+
+[node name="Upper" type="Sprite2D" parent="."]
+texture = ExtResource("2_s3ojj")
+offset = Vector2(0, 380)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 118.75)
+shape = SubResource("RectangleShape2D_wacjf")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(0, 398.5)
+shape = SubResource("RectangleShape2D_6ifcx")
+
+[node name="Score Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Score Area"]
+position = Vector2(48, -1.75)
+shape = SubResource("RectangleShape2D_2uq28")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Score Area" to="." method="_on_score_area_body_entered"]
